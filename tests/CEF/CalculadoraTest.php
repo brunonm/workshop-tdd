@@ -13,8 +13,18 @@ class CalculadoraTest extends TestCase
         $calculadora = new Calculadora();
         
         $this->assertEquals(
-            1000000,
+            1100000,
             $calculadora->calcular(100, Calculadora::SUDOESTE)
+        );
+    }
+
+    public function testDeveAcrescentar10PorcentoSeImovelForMaiorQue50Metros()
+    {
+        $calculadora = new Calculadora();
+        
+        $this->assertEquals(
+            330000,
+            $calculadora->calcular(60, Calculadora::TAGUATINGA)
         );
     }
 }

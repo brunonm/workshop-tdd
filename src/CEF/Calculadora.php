@@ -10,10 +10,16 @@ class Calculadora
 
     public function calcular(float $metrosQuadrados, int $cidade): float
     {
+        $valorTotal = $metrosQuadrados * 5000;
+
         if ($cidade == self::SUDOESTE) {
-            return $metrosQuadrados * 10000;
+            $valorTotal = $metrosQuadrados * 10000;
         }
-        
-        return $metrosQuadrados * 5000;
+
+        if ($metrosQuadrados > 50) {
+            $valorTotal *= 1.1;
+        }
+
+        return $valorTotal;
     }
 }
