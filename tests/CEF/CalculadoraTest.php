@@ -20,7 +20,7 @@ class CalculadoraTest extends TestCase
         return [
             [1100000, 100, Calculadora::SUDOESTE, 'fluxo normal'],
             [330000, 60, Calculadora::TAGUATINGA, '10%'],
-            [500001, 10, Calculadora::TAGUATINGA, 'menor 50m']
+            [50000, 10, Calculadora::TAGUATINGA, 'menor 50m']
         ];
     }
 
