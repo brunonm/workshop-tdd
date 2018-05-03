@@ -15,19 +15,28 @@ class CalculadoraTest extends TestCase
         $this->calculadora = new Calculadora();
     }
 
-    public function testDeveCalcularValorDoImovel()
+    public function providerCalculos()
     {
-        $this->assertEquals(
-            1100000,
-            $this->calculadora->calcular(100, Calculadora::SUDOESTE)
-        );
+        return [
+            [1100000, 100, Calculadora::SUDOESTE, 'fluxo normal'],
+            [330000, 60, Calculadora::TAGUATINGA, '10%'],
+            [500001, 10, Calculadora::TAGUATINGA, 'menor 50m']
+        ];
     }
 
-    public function testDeveAcrescentar10PorcentoSeImovelForMaiorQue50Metros()
-    {
+     /**
+     * @dataProvider providerCalculos
+     */
+    public function testDeveCalcularValorDoImovel(
+        float $valorEsperado,
+        float $tamanho,
+        int $cidade,
+        string $erroEsperado
+    ) {
         $this->assertEquals(
-            330000,
-            $this->calculadora->calcular(60, Calculadora::TAGUATINGA)
+            $valorEsperado,
+            $this->calculadora->calcular($tamanho, $cidade),
+            $erroEsperado
         );
     }
 
