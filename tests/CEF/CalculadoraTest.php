@@ -8,23 +8,26 @@ use CEF\Calculadora;
 
 class CalculadoraTest extends TestCase
 {
+    protected $calculadora;
+
+    protected function setUp()
+    {
+        $this->calculadora = new Calculadora();
+    }
+
     public function testDeveCalcularValorDoImovel()
     {
-        $calculadora = new Calculadora();
-        
         $this->assertEquals(
             1100000,
-            $calculadora->calcular(100, Calculadora::SUDOESTE)
+            $this->calculadora->calcular(100, Calculadora::SUDOESTE)
         );
     }
 
     public function testDeveAcrescentar10PorcentoSeImovelForMaiorQue50Metros()
     {
-        $calculadora = new Calculadora();
-        
         $this->assertEquals(
             330000,
-            $calculadora->calcular(60, Calculadora::TAGUATINGA)
+            $this->calculadora->calcular(60, Calculadora::TAGUATINGA)
         );
     }
 
@@ -33,7 +36,6 @@ class CalculadoraTest extends TestCase
      */
     public function testDeveFalharSeCidadeNaoExistir()
     {
-        $calculadora = new Calculadora();
-        $calculadora->calcular(40, 3);        
+        $this->calculadora->calcular(40, 3);        
     }
 }
