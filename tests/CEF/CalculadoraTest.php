@@ -5,6 +5,8 @@ namespace Tests\CEF;
 
 use PHPUnit\Framework\TestCase;
 use CEF\Calculadora;
+use CEF\Logger;
+use Mockery as M;
 
 class CalculadoraTest extends TestCase
 {
@@ -12,7 +14,10 @@ class CalculadoraTest extends TestCase
 
     protected function setUp()
     {
-        $this->calculadora = new Calculadora();
+        $mockLogger = M::mock(Logger::class);
+        $mockLogger->shouldReceive('log')->once();
+
+        $this->calculadora = new Calculadora($mockLogger);
     }
 
     public function providerCalculos()
@@ -46,5 +51,11 @@ class CalculadoraTest extends TestCase
     public function testDeveFalharSeCidadeNaoExistir()
     {
         $this->calculadora->calcular(40, 3);        
+    }
+
+    protected function tearDown()
+    {
+        parent::tearDown();
+        \Mockery::close();
     }
 }
