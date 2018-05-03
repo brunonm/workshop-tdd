@@ -8,8 +8,17 @@ class Calculadora
     const SUDOESTE = 1;
     const TAGUATINGA = 2;
 
+    public $cidadesParticipantes = [
+        self::SUDOESTE,
+        self::TAGUATINGA
+    ];
+
     public function calcular(float $metrosQuadrados, int $cidade): float
     {
+        if (!in_array($cidade, $this->cidadesParticipantes)) {
+            throw new \Exception('Cidade não participante');
+        }
+
         $valorTotal = $metrosQuadrados * 5000;
 
         if ($cidade == self::SUDOESTE) {

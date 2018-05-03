@@ -27,4 +27,13 @@ class CalculadoraTest extends TestCase
             $calculadora->calcular(60, Calculadora::TAGUATINGA)
         );
     }
+
+    /**
+     * @expectedException \Exception
+     */
+    public function testDeveFalharSeCidadeNaoExistir()
+    {
+        $calculadora = new Calculadora();
+        $calculadora->calcular(40, 3);        
+    }
 }
